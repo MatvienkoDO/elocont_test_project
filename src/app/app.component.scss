@@ -1,0 +1,35 @@
+@import '../colors.scss';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $background-color-secondary;
+}
+
+$shadow: darken($background-color-primary, 10%);
+
+.header {
+    height: 150px;
+    background-color: $background-color-primary;
+    box-shadow: 0 5px 10px $shadow;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    padding: 15px;
+}
+
+.footer {
+    margin-top: auto;
+    height: 100px;
+    background-color: $background-color-primary;
+    box-shadow: 0 -5px 10px $shadow;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
