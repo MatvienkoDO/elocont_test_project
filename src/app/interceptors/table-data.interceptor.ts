@@ -10,7 +10,7 @@ export class TableDataInterceptor implements HttpInterceptor {
   private readonly data: ReplaySubject<DataItem[]>;
   private readonly data$: Observable<HttpResponse<DataItem[]>>;
   
-  private currentData: DataItem[];
+  private currentData: DataItem[] = [];
 
   constructor() {
     this.data = new ReplaySubject(1);
