@@ -3,31 +3,57 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 
+import { DataItem } from '../interfaces/data-item';
+
 @Injectable()
 export class TableDataInterceptor implements HttpInterceptor {
-  private readonly data = new ReplaySubject(1);
+  private readonly data: ReplaySubject<DataItem[]>;
+  private readonly data$: Observable<HttpResponse<DataItem[]>>;
+  
+  private currentData: DataItem[];
 
   constructor() {
+    this.data = new ReplaySubject(1);
+    this.data$ = this.data.pipe(
+      first(),
+      map(
+        data => new HttpResponse({
+          body: data
+        })
+      )
+    );
+
     fetch("assets/data.json").then(async response => {
       const data = await response.json();
       
       if (data && Array.isArray(data.result)) {
-        this.data.next(data.result);
+        const newData: DataItem[] = data.result;
+
+        this.data.next(newData);
+        this.currentData = newData;
       }
     });
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.method === 'get' && req.url === 'table-data') {
+    if (req.method === 'PUT' && req.url === 'table-data') {
+      this.currentData.push(req.body);
 
-      return this.data.pipe(
-        first(),
-        map(
-          data => new HttpResponse({
-            body: data
-          })
-        )
-      );
+      this.data.next(this.currentData);
+
+      return this.data$;
+    }
+
+    if (req.method === 'GET' && req.url === 'table-data') {
+      return this.data$;
+    }
+
+    if (req.method === 'PATCH' && req.url === 'table-data') {
+      // update
+    }
+
+    if (req.method === 'DELETE' && req.url === 'table-data') {
+      // delete
     }
 
     return next.handle(req);
