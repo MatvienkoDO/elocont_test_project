@@ -49,11 +49,20 @@ export class TableDataInterceptor implements HttpInterceptor {
     }
 
     if (req.method === 'PATCH' && req.url === 'table-data') {
-      // update
+      const index = req.body.index;
+      const update = req.body.update;
+
+      Object.assign(this.currentData[index], update);
+      this.data.next(this.currentData);
+
+      return this.data$;
     }
 
     if (req.method === 'DELETE' && req.url === 'table-data') {
-      // delete
+      this.currentData.splice(req.body.index, 1);
+      this.data.next(this.currentData);
+
+      return this.data$;
     }
 
     return next.handle(req);
