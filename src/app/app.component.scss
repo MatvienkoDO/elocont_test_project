@@ -7,12 +7,10 @@
     background-color: $background-color-secondary;
 }
 
-$shadow: darken($background-color-primary, 10%);
-
 .header {
     height: 150px;
     background-color: $background-color-primary;
-    box-shadow: 0 5px 10px $shadow;
+    box-shadow: 0 5px 10px $background-color-primary-shadow;
 
     display: flex;
     justify-content: center;
@@ -27,7 +25,7 @@ $shadow: darken($background-color-primary, 10%);
     margin-top: auto;
     height: 100px;
     background-color: $background-color-primary;
-    box-shadow: 0 -5px 10px $shadow;
+    box-shadow: 0 -5px 10px $background-color-primary-shadow;
 
     display: flex;
     justify-content: center;
