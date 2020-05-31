@@ -11,7 +11,7 @@ export class RowComponent implements OnInit {
   @Input() index: number = NaN;
   @Input() columns: Column[] = [];
   @Input() data: object = {};
-  @Input() isHeader = false
+  @Input('is-header') isHeader = false;
 
   constructor() { }
 
