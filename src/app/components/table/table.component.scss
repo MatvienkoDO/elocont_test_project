@@ -1,0 +1,7 @@
+@import '../../../colors.scss';
+
+:host {
+    display: block;
+    overflow-x: auto;
+    box-shadow: 0 0 6px $background-color-primary-shadow;
+}
