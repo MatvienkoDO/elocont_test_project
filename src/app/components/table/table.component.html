@@ -1,1 +1,11 @@
-<p>table works!</p>
+<app-row
+    [columns]="columns"
+    [isHeader]="true">
+</app-row>
+
+<app-row
+    *ngFor="let rowData of data; index as i"
+    [index]="i"
+    [columns]="columns"
+    [data]="rowData">
+</app-row>

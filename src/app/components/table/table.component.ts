@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Column } from '../../interfaces/column';
 
 @Component({
   selector: 'app-table',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
+  @Input() columns: Column[] = [];
+  @Input() data: object[] = [];
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  
 }
