@@ -1,13 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Column } from '../../interfaces/column';
+
 @Component({
   selector: 'app-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
 export class RowComponent implements OnInit {
-  @Input() fields: string[];
-  @Input() data: object;
+  @Input() index: number = NaN;
+  @Input() columns: Column[] = [];
+  @Input() data: object = {};
+  @Input() isHeader = false
 
   constructor() { }
 

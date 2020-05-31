@@ -1,1 +1,13 @@
+<ng-container *ngIf="isHeader; else regularRow">
+    <app-cell
+        *ngFor="let column of columns"
+        [data]="column.name">
+    </app-cell>
+</ng-container>
 
+<ng-template #regularRow>
+    <app-cell
+        *ngFor="let column of columns"
+        [data]="data[column.key]">
+    </app-cell>
+</ng-template>
