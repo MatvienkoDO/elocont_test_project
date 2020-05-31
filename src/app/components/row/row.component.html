@@ -1,6 +1,7 @@
 <ng-container *ngIf="isHeader; else regularRow">
     <app-cell
         *ngFor="let column of columns"
+        class="cell"
         [data]="column.name">
     </app-cell>
 </ng-container>
@@ -8,6 +9,7 @@
 <ng-template #regularRow>
     <app-cell
         *ngFor="let column of columns"
+        class="cell"
         [data]="data[column.key]">
     </app-cell>
 </ng-template>
