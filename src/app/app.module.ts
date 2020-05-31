@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 import { TableComponent } from './components/table/table.component';
 import { TableDataInterceptor } from './interceptors/table-data.interceptor';
+import { RowComponent } from './components/row/row.component';
+import { CellComponent } from './components/cell/cell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    TableComponent
+    TableComponent,
+    RowComponent,
+    CellComponent
   ],
   imports: [
     BrowserModule,
