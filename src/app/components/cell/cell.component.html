@@ -1,1 +1,15 @@
-{{data}}
+<form
+    *ngIf="changable && isChanging; else onlyShow"
+    (submit)="submit($event)">
+    <input
+        class="cell__input"
+        name="new-data"
+        type="text"
+        [value]="data"
+        (focusout)="onInputLoseFocus()">
+
+    <button class="cell__submit" type="submit">Save</button>
+</form>
+
+
+<ng-template #onlyShow>{{data}}</ng-template>
