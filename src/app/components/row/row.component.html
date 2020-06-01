@@ -1,7 +1,16 @@
+<button
+    *ngIf="deletable"
+    class="row__delete"
+    type="button"
+    (click)="console.log($event)">
+
+    X
+</button>
+
 <ng-container *ngIf="isHeader; else regularRow">
     <app-cell
         *ngFor="let column of columns"
-        class="cell"
+        class="row__cell"
         [data]="column.name">
     </app-cell>
 </ng-container>
@@ -9,7 +18,7 @@
 <ng-template #regularRow>
     <app-cell
         *ngFor="let column of columns"
-        class="cell"
+        class="row__cell"
         [data]="data[column.key]">
     </app-cell>
 </ng-template>

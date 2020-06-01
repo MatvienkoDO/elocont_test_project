@@ -2,8 +2,30 @@
     padding: 10px;
     display: block;
     white-space: nowrap;
+    position: relative;
+
+    &:hover {
+        .row__delete {
+            left: 0;
+        }
+    }
 }
 
-.cell {
-    margin: 2px 5px;
+.row {
+    &__delete {
+        border-style: solid;
+        border-width: 2px;
+        border-color: darkred;
+        border-radius: 10px;
+        background-color: red;
+        cursor: pointer;
+
+        position: absolute;
+        left: -30px;
+        transition: 500ms ease-in-out;
+    }
+
+    &__cell {
+        margin: 2px 5px;
+    }
 }
