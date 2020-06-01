@@ -8,5 +8,6 @@
     *ngFor="let rowData of data; index as i"
     [index]="i"
     [columns]="columns"
-    [data]="rowData">
+    [data]="rowData"
+    (delete)="rowDelete.emit($event)">
 </app-row>

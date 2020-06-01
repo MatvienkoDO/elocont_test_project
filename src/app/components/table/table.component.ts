@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Column } from '../../interfaces/column';
 
@@ -10,6 +10,8 @@ import { Column } from '../../interfaces/column';
 export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() data: object[] = [];
+
+  @Output('row-delete') rowDelete = new EventEmitter();
 
   constructor() { }
 
