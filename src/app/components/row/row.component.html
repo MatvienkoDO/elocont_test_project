@@ -11,7 +11,8 @@
     <app-cell
         *ngFor="let column of columns"
         class="row__cell"
-        [data]="column.name">
+        [data]="column.name"
+        [changable]="false">
     </app-cell>
 </ng-container>
 
@@ -19,6 +20,7 @@
     <app-cell
         *ngFor="let column of columns"
         class="row__cell"
-        [data]="data[column.key]">
+        [data]="data[column.key]"
+        (update)="updateCellCallback(column.key, $event)">
     </app-cell>
 </ng-template>

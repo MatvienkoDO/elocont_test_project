@@ -15,9 +15,17 @@ export class RowComponent implements OnInit {
   @Input() deletable = true;
 
   @Output() delete = new EventEmitter<number>();
+  @Output('update-cell') updateCell = new EventEmitter<{ columnKey: string, data: any }>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public updateCellCallback(columnKey: string, data: any) {
+    this.updateCell.emit({
+      columnKey,
+      data
+    });
   }
 }
