@@ -59,7 +59,13 @@ export class TableDataInterceptor implements HttpInterceptor {
     }
 
     if (req.method === 'DELETE' && req.url === 'table-data') {
-      this.currentData.splice(req.body.index, 1);
+      const index = Number(req.headers.get('index'));
+
+      if (isNaN(index)) {
+        throw { reason: 'incorrect index header value' };
+      }
+
+      this.currentData.splice(index, 1);
       this.data.next(this.currentData);
 
       return this.data$;

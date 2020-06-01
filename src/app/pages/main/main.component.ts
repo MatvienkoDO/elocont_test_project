@@ -21,6 +21,13 @@ export class MainComponent implements OnInit {
     this.items$ = this.http.get<DataItem[]>('table-data');
   }
 
+  public onTableRowDelete(index: number) {
+    this.items$ = this.http.delete<DataItem[]>('table-data', {
+      headers: {
+        index: index.toString()
+      }
+    });
+  }
 }
 
 const columns: Column[] = [
