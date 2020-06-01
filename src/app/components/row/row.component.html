@@ -2,7 +2,7 @@
     *ngIf="deletable"
     class="row__delete"
     type="button"
-    (click)="console.log($event)">
+    (click)="delete.emit(index)">
 
     X
 </button>

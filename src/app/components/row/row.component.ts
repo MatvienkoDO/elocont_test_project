@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Column } from '../../interfaces/column';
 
@@ -13,6 +13,8 @@ export class RowComponent implements OnInit {
   @Input() data: object = {};
   @Input('is-header') isHeader = false;
   @Input() deletable = true;
+
+  @Output() delete = new EventEmitter<number>();
 
   constructor() { }
 
