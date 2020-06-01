@@ -2,5 +2,6 @@
     [columns]="columns"
     [data]="items$ | async"
     (row-delete)="onTableRowDelete($event)"
-    (update-cell)="onCellUpdate($event)">
+    (update-cell)="onCellUpdate($event)"
+    (new-row)="createNewRow($event)">
 </app-table>

@@ -13,6 +13,9 @@ export class TableComponent implements OnInit {
 
   @Output('row-delete') rowDelete = new EventEmitter<number>();
   @Output('update-cell') updateCell = new EventEmitter<{ rowIndex: number, columnKey: string, data: any }>();
+  @Output('new-row') newRow = new EventEmitter<any>();
+
+  public newRowData: any = {};
 
   constructor() { }
 
@@ -25,6 +28,15 @@ export class TableComponent implements OnInit {
       columnKey,
       data
     });
+  }
+
+  public updateNewCell({ columnKey, data }) {
+    this.newRowData[columnKey] = data;
+  }
+
+  public createNewRow() {
+    this.newRow.emit(this.newRowData);
+    this.newRowData = {};
   }
   
 }

@@ -13,9 +13,11 @@ export class RowComponent implements OnInit {
   @Input() data: object = {};
   @Input('is-header') isHeader = false;
   @Input() deletable = true;
+  @Input('new-row') newRow = false;
 
   @Output() delete = new EventEmitter<number>();
   @Output('update-cell') updateCell = new EventEmitter<{ columnKey: string, data: any }>();
+  @Output('create-row') createRow = new EventEmitter<void>();
 
   constructor() { }
 

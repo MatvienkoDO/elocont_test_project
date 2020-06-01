@@ -38,6 +38,10 @@ export class MainComponent implements OnInit {
     });
   }
 
+  public createNewRow(newRowData) {
+    this.items$ = this.http.put<DataItem[]>('table-data', newRowData);
+  }
+
 }
 
 const columns: Column[] = [

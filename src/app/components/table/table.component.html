@@ -12,3 +12,16 @@
     (delete)="rowDelete.emit($event)"
     (update-cell)="updateCellCallback(i, $event)">
 </app-row>
+
+<br>
+<br>
+<br>
+
+<app-row
+    [columns]="columns"
+    [data]="newRowData"
+    [deletable]="false"
+    [new-row]="true"
+    (update-cell)="updateNewCell($event)"
+    (create-row)="createNewRow()">
+</app-row>

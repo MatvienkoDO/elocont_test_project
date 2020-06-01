@@ -1,4 +1,13 @@
 <button
+    *ngIf="newRow"
+    class="row__new"
+    type="button"
+    (click)="createRow.emit()">
+
+    +
+</button>
+
+<button
     *ngIf="deletable"
     class="row__delete"
     type="button"
