@@ -9,5 +9,6 @@
     [index]="i"
     [columns]="columns"
     [data]="rowData"
-    (delete)="rowDelete.emit($event)">
+    (delete)="rowDelete.emit($event)"
+    (update-cell)="updateCellCallback(i, $event)">
 </app-row>

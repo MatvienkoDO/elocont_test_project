@@ -11,11 +11,20 @@ export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() data: object[] = [];
 
-  @Output('row-delete') rowDelete = new EventEmitter();
+  @Output('row-delete') rowDelete = new EventEmitter<number>();
+  @Output('update-cell') updateCell = new EventEmitter<{ rowIndex: number, columnKey: string, data: any }>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public updateCellCallback(rowIndex: number, { columnKey, data }) {
+    this.updateCell.emit({
+      rowIndex,
+      columnKey,
+      data
+    });
   }
   
 }
