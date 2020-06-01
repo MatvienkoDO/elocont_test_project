@@ -28,6 +28,16 @@ export class MainComponent implements OnInit {
       }
     });
   }
+
+  public onCellUpdate({ rowIndex, columnKey, data }) {
+    this.items$ = this.http.patch<DataItem[]>('table-data', {
+      index: rowIndex,
+      update: {
+        [columnKey]: data
+      }
+    });
+  }
+
 }
 
 const columns: Column[] = [

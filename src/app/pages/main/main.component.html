@@ -1,5 +1,6 @@
 <app-table
     [columns]="columns"
     [data]="items$ | async"
-    (row-delete)="onTableRowDelete($event)">
+    (row-delete)="onTableRowDelete($event)"
+    (update-cell)="onCellUpdate($event)">
 </app-table>
