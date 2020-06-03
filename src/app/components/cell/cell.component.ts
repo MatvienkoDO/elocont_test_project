@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewChecked,
+  Output,
+  EventEmitter,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-cell',
@@ -6,11 +16,13 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
   styleUrls: ['./cell.component.scss'],
   host: { '(click)': 'onClickWholeCell()' }
 })
-export class CellComponent implements OnInit, OnChanges {
+export class CellComponent implements OnInit, OnChanges, AfterViewChecked {
   @Input() data: any = undefined;
   @Input() changable = true;
 
   @Output() update = new EventEmitter<any>();
+
+  @ViewChild('cellInput', { static: false }) cellInput: any;
 
   public isChanging = false;
 
@@ -27,6 +39,12 @@ export class CellComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  ngAfterViewChecked() {
+    if (this.cellInput && this.cellInput.nativeElement) {
+      this.cellInput.nativeElement.focus();
+    }
+  }
+
   onClickWholeCell() {
     // markForCheck
     this.isChanging = true;
@@ -34,9 +52,9 @@ export class CellComponent implements OnInit, OnChanges {
 
   onInputLoseFocus(event) {
     if (event.relatedTarget === null) {
-    // markForCheck
-    this.isChanging = false;
-  }
+      // markForCheck
+      this.isChanging = false;
+    }
   }
 
   submit(event) {
