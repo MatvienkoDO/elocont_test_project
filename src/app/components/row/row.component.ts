@@ -16,7 +16,6 @@ export class RowComponent implements OnInit {
 
   @Output() delete = new EventEmitter<number>();
   @Output('update-cell') updateCell = new EventEmitter<{ columnKey: string, data: any }>();
-  @Output('create-row') createRow = new EventEmitter<void>();
 
   constructor() { }
 
