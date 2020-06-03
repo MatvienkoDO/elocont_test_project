@@ -5,6 +5,8 @@ import { map, first } from 'rxjs/operators';
 
 import { DataItem } from '../interfaces/data-item';
 
+const localStorageKey = 'data';
+
 @Injectable()
 export class TableDataInterceptor implements HttpInterceptor {
   private readonly data: ReplaySubject<DataItem[]>;
@@ -23,15 +25,35 @@ export class TableDataInterceptor implements HttpInterceptor {
       )
     );
 
-    fetch("assets/data.json").then(async response => {
-      const data = await response.json();
-      
-      if (data && Array.isArray(data.result)) {
-        const newData: DataItem[] = data.result;
+    this.initializeData();
+    this.updateLocalStorage();
+  }
 
-        this.data.next(newData);
-        this.currentData = newData;
-      }
+  private initializeData() {
+    const fromStorageData = localStorage.getItem(localStorageKey);
+    if (fromStorageData) {
+      const newData = JSON.parse(fromStorageData);
+
+      this.data.next(newData);
+      this.currentData = newData;
+    } else {
+      fetch("assets/data.json").then(async response => {
+        const data = await response.json();
+        
+        if (data && Array.isArray(data.result)) {
+          const newData: DataItem[] = data.result;
+  
+          this.data.next(newData);
+          this.currentData = newData;
+        }
+      });
+    }
+  }
+
+  private updateLocalStorage() {
+    // there is no need to unsubscribe. This subscription will live all time of app
+    this.data.subscribe(newData => {
+      localStorage.setItem(localStorageKey, JSON.stringify(newData));
     });
   }
 
