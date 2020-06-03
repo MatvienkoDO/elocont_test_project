@@ -6,8 +6,23 @@
     box-shadow: 0 0 6px $background-color-primary-shadow;
 }
 
-.new-row-title {
+.new-row-button {
     margin: 25px 0 5px 15px;
+    background-color: green;
+    border-color: darkgreen;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px green;
+    color: white;
+    padding: 5px 8px;
+    cursor: pointer;
+
+    &:active {
+        box-shadow: 0 0 15px darkgreen;
+        transform: translateY(1px);
+        transition: 100ms;
+    }
 }
 
 .new-row {

@@ -4,7 +4,13 @@
     [deletable]="false">
 </app-row>
 
-<div class="new-row-title">Add new row</div>
+<button
+    class="new-row-button"
+    (click)="createNewRow()">
+    
+    Add new row
+</button>
+
 <app-row
     class="new-row"
     [columns]="columns"
