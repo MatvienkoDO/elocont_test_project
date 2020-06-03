@@ -4,6 +4,17 @@
     [deletable]="false">
 </app-row>
 
+<div class="new-row-title">Add new row</div>
+<app-row
+    class="new-row"
+    [columns]="columns"
+    [data]="newRowData"
+    [deletable]="false"
+    [new-row]="true"
+    (update-cell)="updateNewCell($event)"
+    (create-row)="createNewRow()">
+</app-row>
+
 <app-row
     *ngFor="let rowData of data; index as i"
     [index]="i"
@@ -11,17 +22,4 @@
     [data]="rowData"
     (delete)="rowDelete.emit($event)"
     (update-cell)="updateCellCallback(i, $event)">
-</app-row>
-
-<br>
-<br>
-<br>
-
-<app-row
-    [columns]="columns"
-    [data]="newRowData"
-    [deletable]="false"
-    [new-row]="true"
-    (update-cell)="updateNewCell($event)"
-    (create-row)="createNewRow()">
 </app-row>
