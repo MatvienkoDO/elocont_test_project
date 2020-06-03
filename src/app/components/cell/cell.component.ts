@@ -32,9 +32,11 @@ export class CellComponent implements OnInit, OnChanges {
     this.isChanging = true;
   }
 
-  onInputLoseFocus() {
+  onInputLoseFocus(event) {
+    if (event.relatedTarget === null) {
     // markForCheck
     this.isChanging = false;
+  }
   }
 
   submit(event) {

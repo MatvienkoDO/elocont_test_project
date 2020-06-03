@@ -1,12 +1,13 @@
 <form
     *ngIf="changable && isChanging; else onlyShow"
+    (focusout)="onInputLoseFocus($event)"
     (submit)="submit($event)">
+
     <input
         class="cell__input"
         name="new-data"
         type="text"
-        [value]="data"
-        (focusout)="onInputLoseFocus()">
+        [value]="data">
 
     <button class="cell__submit" type="submit">Save</button>
 </form>
