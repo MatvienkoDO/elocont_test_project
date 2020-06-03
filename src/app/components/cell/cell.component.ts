@@ -17,13 +17,16 @@ import {
   host: { '(click)': 'onClickWholeCell()' }
 })
 export class CellComponent implements OnInit, OnChanges, AfterViewChecked {
-  @Input() data: any = undefined;
+  @Input() set data (value) {
+    this.innerData = value === undefined ? '' : value;
+  }
   @Input() changable = true;
 
   @Output() update = new EventEmitter<any>();
 
   @ViewChild('cellInput', { static: false }) cellInput: any;
 
+  public innerData: any;
   public isChanging = false;
 
   constructor() { }
